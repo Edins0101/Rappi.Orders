@@ -8,6 +8,7 @@ services:
     container_name: rappi_orders_api
     environment:
       ASPNETCORE_ENVIRONMENT: Development
+      DOTNET_ENVIRONMENT: Development
     ports:
       - "8080:8080"
 
@@ -18,6 +19,4 @@ services:
     container_name: rappi_orders_worker
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-
-volumes:
-  sql_data:
+      DOTNET_ENVIRONMENT: Development

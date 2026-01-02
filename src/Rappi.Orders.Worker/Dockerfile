@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+﻿FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
 COPY Rappi.Orders.sln ./
@@ -16,4 +16,6 @@ RUN dotnet publish -c Release -o /app/publish
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 COPY --from=build /app/publish .
+# ✅ fuerza a que los appsettings viajen (incluye Development/Staging/Production)
+COPY src/Rappi.Orders.Worker/appsettings*.json ./
 ENTRYPOINT ["dotnet", "Rappi.Orders.Worker.dll"]
