@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: src/Rappi.Orders.Api/Dockerfile
+    container_name: rappi_orders_api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      - "8080:8080"
+
+  worker:
+    build:
+      context: .
+      dockerfile: src/Rappi.Orders.Worker/Dockerfile
+    container_name: rappi_orders_worker
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+
+volumes:
+  sql_data:
